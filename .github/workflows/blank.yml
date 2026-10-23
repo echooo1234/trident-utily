@@ -19,11 +19,11 @@ jobs:
           java-version: '21'
           distribution: 'temurin'
 
-      - name: Gradle Sistemini Kur
-        uses: gradle/actions/setup-gradle@v3
+      - name: Gradle Calistirma Izni Ver
+        run: chmod +x gradlew
 
       - name: Modu Derle
-        run: gradle build --no-daemon
+        run: ./gradlew build --no-daemon
 
       - name: Hazir JAR Dosyasini Yukle
         if: success()
