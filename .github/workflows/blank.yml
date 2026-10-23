@@ -1,0 +1,33 @@
+name: Build Fabric Mod
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Repository Klonla
+        uses: actions/checkout@v4
+
+      - name: Java 21 Kurulumu
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+
+      - name: Gradle Calistirma Izni Ver
+        run: chmod +x gradlew
+
+      - name: Modu Derle (Build)
+        run: ./gradlew build --no-daemon
+
+      - name: Hazir JAR Dosyasini Yukle (Artifact)
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: Fabric-Mod-JAR
+          path: build/libs/*.jar
