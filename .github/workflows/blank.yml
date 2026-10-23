@@ -26,10 +26,21 @@ jobs:
           gradle-version: 9.2.0
 
       - name: Build
-        run: gradle build --stacktrace --console=plain
+        run: |
+          echo "Repo içeriği:"
+          ls -la
+          SETTINGS=$(find . -name settings.gradle -not -path "*/.git/*" | head -1)
+          if [ -z "$SETTINGS" ]; then
+            echo "HATA: settings.gradle bulunamadı, proje dosyaları repoya yüklenmemiş."
+            exit 1
+          fi
+          DIR=$(dirname "$SETTINGS")
+          echo "Proje klasörü: $DIR"
+          cd "$DIR"
+          gradle build --stacktrace --console=plain
 
       - name: Upload jar
         uses: actions/upload-artifact@v4
         with:
           name: tridentutil
-          path: build/libs/*.jar
+          path: "**/build/libs/*.jar"
