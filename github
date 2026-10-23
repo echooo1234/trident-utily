@@ -1,0 +1,16 @@
+trident-boost/
+├── .github/
+│   └── workflows/
+│       └── blank.yml           <-- GitHub Actions derleme dosyası
+├── gradle/
+│   └── wrapper/
+│       ├── gradle-wrapper.jar  <-- Gradle çalıştırma bileşeni
+│       └── gradle-wrapper.properties
+├── src/
+│   └── main/
+│       ├── java/               <-- Claude'un yazdığı Java kodları buraya
+│       └── resources/          <-- fabric.mod.json dosyası buraya
+├── build.gradle                <-- Proje derleme ayarları
+├── gradlew                     <-- Linux/GitHub için gerekli (eksik olan buydu)
+├── gradlew.bat                 <-- Windows için gerekli
+└── settings.gradle             <-- Proje adı ayarları
