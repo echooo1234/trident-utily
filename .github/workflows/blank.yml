@@ -13,19 +13,19 @@ jobs:
       - name: Repository Klonla
         uses: actions/checkout@v4
 
-      - name: Java 21 Kurulumu
+      - name: Java 21 Kur
         uses: actions/setup-java@v4
         with:
           java-version: '21'
           distribution: 'temurin'
 
-      - name: Gradle Calistirma Izni Ver
-        run: chmod +x gradlew
+      - name: Gradle Sistemini Kur
+        uses: gradle/actions/setup-gradle@v3
 
-      - name: Modu Derle (Build)
-        run: ./gradlew build --no-daemon
+      - name: Modu Derle
+        run: gradle build --no-daemon
 
-      - name: Hazir JAR Dosyasini Yukle (Artifact)
+      - name: Hazir JAR Dosyasini Yukle
         if: success()
         uses: actions/upload-artifact@v4
         with:
